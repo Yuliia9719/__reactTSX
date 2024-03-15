@@ -41,6 +41,10 @@ function App() {
         <div className="col-2">
           <h3 className="my-3">Users list</h3>
           {isLoading && <h4>Loading....</h4>}
+          {error &&
+            <p>
+              {error}
+            </p>}
           <ol>
             {users.map((user: UserInterface) =>
               <li key={user.id}>
