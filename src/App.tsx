@@ -17,9 +17,6 @@ function App() {
         setUsers(data);
         setIsLoading(false);
       } catch (error) {
-        {
-          console.log(error);
-        }
         setError((error as Error).message);
       } finally {
         setIsLoading(false);
