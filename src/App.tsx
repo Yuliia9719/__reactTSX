@@ -13,6 +13,7 @@ function App() {
     const fetchDataAndHandleErrors = async () => {
       try {
         setIsLoading(true);
+        setError(null);
         const data = await fetchData();
         setUsers(data);
         setIsLoading(false);
@@ -27,28 +28,33 @@ function App() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-5">
+        <div className="col-4">
+          <h3 className="my-3">Users list</h3>
+          {isLoading &&
+            <h4 style={{ fontWeight: "bold", color: "blue" }}>Loading....</h4>}
+          {error &&
+            <h5 style={{ color: "red" }}>
+              {error}
+            </h5>}
+
+          {!isLoading &&
+            !error &&
+            users.length &&
+            <ol>
+              {users.map((user: UserInterface) =>
+                <li key={user.id}>
+                  {user.name}
+                </li>
+              )}
+            </ol>}
+        </div>
+        <div className="col-4">
           <h1 className="my-3">Controlled Form</h1>
           <ControlledForm />
         </div>
-        <div className="col-5">
+        <div className="col-4">
           <h2 className="my-3">Uncontrolled Form</h2>
           <UncontrolledForm />
-        </div>
-        <div className="col-2">
-          <h3 className="my-3">Users list</h3>
-          {isLoading && <h4>Loading....</h4>}
-          {error &&
-            <p>
-              {error}
-            </p>}
-          <ol>
-            {users.map((user: UserInterface) =>
-              <li key={user.id}>
-                {user.name}
-              </li>
-            )}
-          </ol>
         </div>
       </div>
     </div>
