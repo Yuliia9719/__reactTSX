@@ -25,6 +25,7 @@ function App() {
     };
     fetchDataAndHandleErrors();
   }, []);
+
   return (
     <div className="container">
       <div className="row">
